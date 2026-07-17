@@ -7,6 +7,7 @@ import { PageHeader, SectionHeader } from "@/components/ui/PageHeader";
 import {
   getChallengeById,
   getLessonById,
+  getLessons,
   getWorldById,
 } from "@/lib/data/mock-data";
 import {
@@ -18,6 +19,10 @@ import { Button } from "@/components/ui/Button";
 type LessonPageProps = {
   params: Promise<{ lessonId: string }>;
 };
+
+export function generateStaticParams() {
+  return getLessons().map((lesson) => ({ lessonId: lesson.id }));
+}
 
 export async function generateMetadata({ params }: LessonPageProps) {
   const { lessonId } = await params;

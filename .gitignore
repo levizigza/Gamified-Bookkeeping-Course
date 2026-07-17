@@ -14,6 +14,7 @@
 # next.js
 /.next/
 /out/
+# keep /out ignored locally; CI builds fresh for Pages
 
 # production
 /build

@@ -1,6 +1,3 @@
-"use client";
-
-import { use } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DebitOrCredit } from "@/components/games/DebitOrCredit";
@@ -11,17 +8,7 @@ import { StatementSorter } from "@/components/games/StatementSorter";
 import { EquationHero } from "@/components/games/EquationHero";
 import { ReportReader } from "@/components/games/ReportReader";
 import { YearEndPrep } from "@/components/games/YearEndPrep";
-
-const GAME_META: Record<string, { title: string; icon: string }> = {
-  "debit-credit": { title: "Debit or Credit?", icon: "⚡" },
-  "category-blitz": { title: "Category Blitz", icon: "🗂️" },
-  "balance-entry": { title: "Balance the Entry", icon: "⚖️" },
-  "cash-flow-snap": { title: "Cash Flow Snap", icon: "💰" },
-  "statement-sorter": { title: "Statement Sorter", icon: "📋" },
-  "equation-hero": { title: "Equation Hero", icon: "🧮" },
-  "report-reader": { title: "Report Reader", icon: "🔍" },
-  "year-end-prep": { title: "Year-End Prep", icon: "🎯" },
-};
+import { ARCADE_GAMES } from "@/lib/games/arcadeCatalog";
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   "debit-credit": DebitOrCredit,
@@ -34,9 +21,25 @@ const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   "year-end-prep": YearEndPrep,
 };
 
-export default function GamePage({ params }: { params: Promise<{ gameId: string }> }) {
-  const { gameId } = use(params);
-  const meta = GAME_META[gameId];
+export function generateStaticParams() {
+  return ARCADE_GAMES.map((game) => ({ gameId: game.id }));
+}
+
+type GamePageProps = {
+  params: Promise<{ gameId: string }>;
+};
+
+export async function generateMetadata({ params }: GamePageProps) {
+  const { gameId } = await params;
+  const game = ARCADE_GAMES.find((g) => g.id === gameId);
+  return {
+    title: game ? `${game.title} — Ledger Quest` : "Game — Ledger Quest",
+  };
+}
+
+export default async function GamePage({ params }: GamePageProps) {
+  const { gameId } = await params;
+  const meta = ARCADE_GAMES.find((g) => g.id === gameId);
   const GameComponent = GAME_COMPONENTS[gameId];
 
   if (!meta || !GameComponent) {

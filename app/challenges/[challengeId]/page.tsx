@@ -7,7 +7,7 @@ import { YearEndBossFight } from "@/components/challenges/YearEndBossFight";
 import { TransactionClassifier } from "@/components/challenges/TransactionClassifier";
 import { ChallengePracticeRedirect } from "@/components/challenges/ChallengePracticeRedirect";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { getChallengeById, getLessonById } from "@/lib/data/mock-data";
+import { getChallengeById, getChallenges, getLessonById } from "@/lib/data/mock-data";
 import {
   CLASSIFY_TRANSACTION_CHALLENGE_ID,
   getClassifyTransactionChallenge,
@@ -33,6 +33,10 @@ import { Button } from "@/components/ui/Button";
 type ChallengePageProps = {
   params: Promise<{ challengeId: string }>;
 };
+
+export function generateStaticParams() {
+  return getChallenges().map((challenge) => ({ challengeId: challenge.id }));
+}
 
 export async function generateMetadata({ params }: ChallengePageProps) {
   const { challengeId } = await params;
