@@ -98,7 +98,7 @@ export const classifyTransactionChallenge: ClassifyTransactionChallenge = {
           "Put every small consumable office purchase in Supplies. Do not mix them into Office " +
           "Expenses unless you have a clear rule and stick to it.",
         doubleEntryEffect:
-          "Debit Supplies $80 · Debit GST recoverable $4 · Credit Credit Card Payable $84.",
+          "Debit Supplies $80 · Debit GST/HST Payable (input tax credit) $4 · Credit Credit Card Payable $84.",
       },
     },
     {
@@ -221,6 +221,54 @@ export const classifyTransactionChallenge: ClassifyTransactionChallenge = {
           "Record every bank fee when it hits your statement — small charges add up over a year.",
         doubleEntryEffect:
           "Debit Bank Service Charges $15 · Credit Bank/Cash $15.",
+      },
+    },
+    {
+      id: "june-11-taxi",
+      date: "2024-06-11",
+      description: "Taxi to client site",
+      narrative:
+        "You hail a taxi from the airport to a client meeting. The receipt is $42.00 plus $2.10 GST " +
+        "($44.10 total), paid from your business debit card. Cash left the bank immediately.",
+      vendor: "Calgary Taxi Co.",
+      amountCents: 4_410,
+      xpReward: 40,
+      answer: {
+        accountType: "expense",
+        accountId: "travel-expense",
+        cashEffect: "decrease",
+        salesTaxApplies: true,
+        explanation:
+          "A business taxi is travel spend — you gave up cash and gained a ride (service). " +
+          "Split GST from the base fare so sales tax stays trackable for CRA.",
+        consistencyPrinciple:
+          "Put client taxis and transit in Travel Expense every time — do not bury them in Office Expenses.",
+        doubleEntryEffect:
+          "Debit Travel Expense $42 · Debit GST/HST Payable (input tax credit) $2.10 · Credit Bank/Cash $44.10.",
+      },
+    },
+    {
+      id: "june-14-home-depot",
+      date: "2024-06-14",
+      description: "Workshop materials — Home Depot",
+      narrative:
+        "You buy $200 of materials at Home Depot for a client workshop, plus $10 GST ($210 total), " +
+        "paid on the business debit card. These are job materials — not general office cleaning costs.",
+      vendor: "Home Depot",
+      amountCents: 21_000,
+      xpReward: 45,
+      answer: {
+        accountType: "expense",
+        accountId: "supplies",
+        cashEffect: "decrease",
+        salesTaxApplies: true,
+        explanation:
+          "Job materials belong in Supplies (direct costs). Cash went down for the full receipt. " +
+          "GST on the purchase can often be recovered — keep it separate from the materials amount.",
+        consistencyPrinciple:
+          "Like the plumber rule: materials for client work stay in Supplies every time — never reshuffle them into Office Expenses next month.",
+        doubleEntryEffect:
+          "Debit Supplies $200 · Debit GST/HST Payable (input tax credit) $10 · Credit Bank/Cash $210.",
       },
     },
     {

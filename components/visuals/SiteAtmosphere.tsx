@@ -16,6 +16,8 @@ function routeVariant(pathname: string): ConceptVisualVariant {
 export function SiteAtmosphere() {
   const pathname = usePathname();
   const variant = routeVariant(pathname);
+  const quietReadingPage =
+    pathname.startsWith("/lessons") || pathname.startsWith("/challenges");
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
@@ -23,28 +25,14 @@ export function SiteAtmosphere() {
       <div className="absolute -left-24 bottom-20 h-80 w-80 rounded-full bg-gold-400/10 blur-3xl" />
       <div className="accounting-grid absolute inset-0 opacity-[0.14]" />
 
-      <div className="absolute -right-16 top-[18%] hidden h-64 w-80 opacity-[0.075] xl:block">
-        <ConceptVisual variant={variant} className="h-full w-full" />
-      </div>
+      {!quietReadingPage && (
+        <>
+          <div className="absolute -right-16 top-[18%] hidden h-64 w-80 opacity-[0.075] xl:block">
+            <ConceptVisual variant={variant} className="h-full w-full" />
+          </div>
 
-      <div className="visual-ledger-chip absolute left-[4%] top-[27%] hidden rotate-[-8deg] lg:block">
-        <span>DR</span>
-        <strong>$2,400</strong>
-      </div>
-      <div className="visual-ledger-chip absolute bottom-[18%] right-[5%] hidden rotate-[7deg] lg:block">
-        <span>CR</span>
-        <strong>$2,400</strong>
-      </div>
-
-      {[12, 32, 58, 82].map((left, index) => (
-        <span
-          key={left}
-          className={`visual-coin visual-delay-${index}`}
-          style={{ left: `${left}%`, top: `${18 + (index % 2) * 62}%` }}
-        >
-          $
-        </span>
-      ))}
+        </>
+      )}
     </div>
   );
 }

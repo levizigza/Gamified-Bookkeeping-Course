@@ -13,26 +13,9 @@ type LessonContentViewProps = {
 
 export function LessonContentView({
   content,
-  worldLabel,
-  worldIcon,
 }: LessonContentViewProps) {
   return (
     <article className="space-y-8">
-      {/* Header */}
-      <header>
-        {worldLabel && (
-          <p className="text-sm font-medium text-ledger-500">
-            {worldIcon} {worldLabel} · Week {content.week}
-          </p>
-        )}
-        <h1 className="mt-1 text-3xl font-bold text-ledger-900 sm:text-4xl">
-          {content.title}
-        </h1>
-        <p className="mt-2 text-sm text-ledger-500">
-          ~{content.durationMinutes} min read
-        </p>
-      </header>
-
       {/* Story intro */}
       <section aria-labelledby="story-heading" className="animate-fade-in-up">
         <Card className="card-surface border-ledger-200 bg-gradient-to-br from-white to-ledger-50/80">
@@ -150,9 +133,12 @@ export function LessonContentView({
         </p>
         <Link href={`/challenges/${content.primaryChallengeId}`} className="mt-6 inline-block">
           <Button size="lg" variant="secondary">
-            Start Challenge
+            Start practice
           </Button>
         </Link>
+        <p className="mx-auto mt-3 max-w-md text-xs text-ledger-300">
+          When you finish, return to the board and collect your star.
+        </p>
       </section>
     </article>
   );

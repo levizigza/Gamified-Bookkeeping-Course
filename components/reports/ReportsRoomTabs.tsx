@@ -117,7 +117,7 @@ export function ReportsRoomTabs() {
         <div>
           <p className="text-sm font-semibold text-ledger-900">Practice what these reports teach</p>
           <p className="text-sm text-ledger-600">
-            Switch from reading statements to building the instinct owners need.
+            Choose a short activity to check what you understood.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">

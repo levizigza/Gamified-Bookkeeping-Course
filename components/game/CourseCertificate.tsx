@@ -71,21 +71,23 @@ export function CourseCertificate({
 
           {qualified ? (
             <p className="mx-auto mt-8 max-w-md text-sm leading-relaxed text-ledger-700">
-              Demonstrated proficiency in double-entry bookkeeping, financial reporting,
-              and year-end adjustments — ready for accountant handoff.
+              Completed the Ledger Quest practice curriculum with strong scores. This is
+              education, not professional certification — confirm year-end entries with your
+              accountant before filing.
             </p>
           ) : (
             <p className="mx-auto mt-8 max-w-md text-sm leading-relaxed text-amber-800">
-              Keep practicing to reach 80% mastery and unlock your full certificate.
+              You finished the board. Reach 80% mastery to earn the full Certificate of
+              Completion wording.
             </p>
           )}
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/dashboard">
-              <Button>{qualified ? "Continue practicing" : "Back to dashboard"}</Button>
+            <Link href="/board">
+              <Button>{qualified ? "Return to the board" : "Return to the board"}</Button>
             </Link>
             <Link href="/profile">
-              <Button variant="outline">View profile</Button>
+              <Button variant="outline">View challenge scores</Button>
             </Link>
           </div>
         </div>

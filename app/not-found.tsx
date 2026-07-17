@@ -8,10 +8,10 @@ export default function NotFound() {
       <EmptyState
         icon="📒"
         title="Page not found"
-        description="This lesson or challenge does not exist yet. Check the URL or return to your dashboard."
+        description="We could not find this page. Return to the game board to choose an available lesson, game, or challenge."
         action={
-          <Link href="/dashboard">
-            <Button>Go to dashboard</Button>
+          <Link href="/board">
+            <Button>Return to game board</Button>
           </Link>
         }
       />

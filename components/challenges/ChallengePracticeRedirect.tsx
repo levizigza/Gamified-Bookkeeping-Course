@@ -13,58 +13,63 @@ const PRACTICE_BY_CHALLENGE: Record<
   { title: string; description: string; primary: PracticeLink; secondary?: PracticeLink }
 > = {
   "challenge-why-books": {
-    title: "Practice this skill in Daily Ledger",
+    title: "Practice why bookkeeping matters",
     description:
-      "Start with classifying real June transactions — the fastest way to see why clean books matter.",
-    primary: { href: "/challenges/challenge-classify-transaction", label: "Classify a transaction" },
-    secondary: { href: "/games/cash-flow-snap", label: "Cash Flow Snap game" },
+      "Use Cash Flow Snap to see how organized records help you understand cash, make business decisions, and prepare information for taxes, banks, or partners.",
+    primary: { href: "/games/cash-flow-snap", label: "Start Cash Flow Snap" },
+    secondary: { href: "/lessons/lesson-why-bookkeeping", label: "Review the Week 1 lesson" },
   },
   "challenge-first-journal": {
     title: "Build your first journal entries",
-    description: "Use Double-Entry Duel to practice debit and credit pairs with teaching feedback.",
+    description: "Practice double-entry and sales-tax splits (taxi, Home Depot–style buys) in Double-Entry Duel.",
     primary: { href: "/challenges/challenge-double-entry-duel", label: "Double-Entry Duel" },
     secondary: { href: "/games/debit-credit", label: "Debit or Credit? game" },
   },
   "challenge-june-meals": {
-    title: "Practice June meal & expense coding",
-    description: "Classify meals, entertainment, and everyday expenses the way Bright Path would.",
+    title: "Practice everyday meal & expense coding",
+    description:
+      "Classify meals, entertainment, vehicle, office, supplies, and travel — Consistency: same account every time.",
     primary: { href: "/challenges/challenge-classify-transaction", label: "Classify the Transaction" },
     secondary: { href: "/games/category-blitz", label: "Category Blitz" },
   },
   "challenge-june-equipment": {
-    title: "Practice equipment & asset decisions",
-    description: "Learn when a purchase is an asset vs an expense, then reinforce it in the arcade.",
+    title: "Practice equipment & everyday purchases",
+    description: "Equipment lasts years (asset). Materials and taxis need GST splits. Keep categories consistent.",
     primary: { href: "/challenges/challenge-classify-transaction", label: "Classify the Transaction" },
-    secondary: { href: "/games/cash-flow-snap", label: "Cash Flow Snap" },
+    secondary: { href: "/games/balance-entry", label: "Balance the Entry" },
   },
   "challenge-trial-balance": {
     title: "See a balanced trial balance",
     description:
-      "Open Reports Room for Bright Path’s June trial balance, then practice making entries balance.",
+      "Daily transactions compile into a month-end Trial Balance (assets, liabilities, income, expenses). View Bright Path’s, then practice balancing entries.",
     primary: { href: "/reports", label: "Open Reports Room" },
-    secondary: { href: "/games/balance-entry", label: "Balance the Entry" },
+    secondary: { href: "/games/balance-entry?week=2", label: "Balance the Entry (Week 2)" },
   },
   "challenge-build-pl": {
     title: "Read the Profit & Loss",
-    description: "June’s P&L is ready in Reports Room. Then sort which accounts belong on it.",
+    description:
+      "See Bright Path’s P&L (revenue → direct costs → gross profit → expenses → net income), then sort which accounts belong on it.",
     primary: { href: "/reports", label: "View Profit & Loss" },
     secondary: { href: "/games/statement-sorter", label: "Statement Sorter" },
   },
   "challenge-build-bs": {
     title: "Read the Balance Sheet",
-    description: "Review Bright Path’s Balance Sheet, then practice placing accounts correctly.",
+    description:
+      "Confirm Assets = Liabilities + Equity, then practice the equation and Insights → Decisions.",
     primary: { href: "/reports", label: "View Balance Sheet" },
     secondary: { href: "/games/equation-hero", label: "Equation Hero" },
   },
   "challenge-depreciation": {
-    title: "Practice year-end adjusting entries",
-    description: "Use the depreciation calculator, then warm up with Year-End Prep.",
+    title: "Practice year-end Journals #1–#3",
+    description:
+      "Use the calculators for depreciation ($14,500), home office ($3,585), and mileage ($15,600), then warm up with Year-End Prep.",
     primary: { href: "/tools#calculators", label: "Year-end calculators" },
     secondary: { href: "/games/year-end-prep", label: "Year-End Prep game" },
   },
   "challenge-handoff": {
     title: "Prepare for accountant handoff",
-    description: "Finish the Year-End Boss Fight — the full handoff checklist lives there.",
+    description:
+      "Finish the Year-End Boss Fight — Journals #1–#3 posted, then the tax-prep handoff checklist.",
     primary: { href: "/challenges/challenge-year-end-boss", label: "Year-End Boss Fight" },
     secondary: { href: "/tools#calculators", label: "Year-end tools" },
   },
@@ -86,9 +91,9 @@ export function ChallengePracticeRedirect({
   if (!practice) {
     return (
       <EmptyState
-        icon="🚧"
-        title="Challenge coming soon"
-        description="This challenge is still being built. Try another lesson challenge or the Side Arcade."
+        icon="🧭"
+        title="Choose another practice activity"
+        description="This activity does not have an interactive version yet. Return to the lesson or choose a complete game from the arcade."
         action={
           <div className="flex flex-wrap justify-center gap-3">
             {lessonHref && (

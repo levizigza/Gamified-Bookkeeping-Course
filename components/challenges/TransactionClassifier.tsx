@@ -451,12 +451,12 @@ function ChallengeSummaryView({
               Retry challenge
             </Button>
           ) : (
-            <Link href={`/lessons/${nextLessonId}`}>
-              <Button size="lg">Next lesson</Button>
+            <Link href="/board">
+              <Button size="lg">Return to board</Button>
             </Link>
           )}
-          <Link href="/dashboard">
-            <Button variant="outline">Dashboard</Button>
+          <Link href={`/lessons/${nextLessonId}`}>
+            <Button variant="outline">Optional next lesson</Button>
           </Link>
         </>
       }

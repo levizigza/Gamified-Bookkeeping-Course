@@ -174,6 +174,21 @@ export const chartOfAccounts: ChartAccount[] = [
     active: true,
   },
   {
+    id: "accumulated-amortization-furniture",
+    code: "1592",
+    name: "Accumulated Amortization - Furniture",
+    accountType: "asset",
+    accountSubType: "fixed_asset",
+    normalBalance: "credit",
+    beginnerDescription:
+      "Contra-asset for furniture and fittings — reduces Furniture and Fixtures to net book value on the Balance Sheet.",
+    exampleUses: [
+      "Year-end Journal #1 credit for furniture amortization",
+      "Showing net furniture value = Furniture minus Accumulated Amortization",
+    ],
+    active: true,
+  },
+  {
     id: "accumulated-amortization-equipment",
     code: "1595",
     name: "Accumulated Amortization - Equipment",
@@ -181,7 +196,7 @@ export const chartOfAccounts: ChartAccount[] = [
     accountSubType: "fixed_asset",
     normalBalance: "credit",
     beginnerDescription:
-      "The total amortization recorded against equipment since purchase. It lowers the equipment's carrying value on the balance sheet.",
+      "The total amortization recorded against equipment (including computers) since purchase. It lowers the equipment's carrying value on the balance sheet.",
     exampleUses: [
       "Amortizing a laptop over 36 months",
       "Year-end entry for computers and office equipment",

@@ -65,7 +65,7 @@ export function saveAccountSorterBestStreak(streak: number): void {
 }
 
 export function getReportsRoomLockMessage(): string {
-  return `Score ${REPORTS_ROOM_MASTERY_THRESHOLD}% on Account Sorter to unlock`;
+  return `Score ${REPORTS_ROOM_MASTERY_THRESHOLD}% on Account Sorter to hit the Week 2 learning target`;
 }
 
 export function getInsightDetectiveBestScore(): number {

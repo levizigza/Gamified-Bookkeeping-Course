@@ -296,7 +296,8 @@ export function getInsightDetectiveChallenge(): InsightDetectiveChallenge {
       id: INSIGHT_DETECTIVE_CHALLENGE_ID,
       title: "Insight Detective",
       description:
-        "Review Bright Path's June 2024 reports and answer business decision questions. Score 80% or higher on your first try to earn the Insight Detective badge.",
+        "Follow the Week 3 flow: Trial Balance → Profit & Loss + Balance Sheet → Insights → Decisions. " +
+        "Score 80% or higher on your first try to earn the Insight Detective badge.",
       lessonId: "lesson-balance-sheet",
       worldId: "reports-room",
       xpReward: questions.reduce((sum, q) => sum + q.baseXp, 0),

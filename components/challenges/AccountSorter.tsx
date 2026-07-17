@@ -29,6 +29,7 @@ import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
 import { ChallengeCompletePanel } from "@/components/game/ChallengeCompletePanel";
 import { Alert } from "@/components/ui/Alert";
 import { RemediationFeedback } from "@/components/game/RemediationFeedback";
+import { markChallengeMissionComplete } from "@/lib/data/boardMissions";
 
 type AccountSorterProps = {
   challenge: AccountSorterChallenge;
@@ -177,8 +178,8 @@ export function AccountSorter({ challenge }: AccountSorterProps) {
           { label: "XP earned", value: `+${result.totalXp}`, highlight: true },
           { label: "Mastery (first try)", value: `${result.masteryPercent}%` },
           {
-            label: "Unlock gate",
-            value: result.reportsRoomUnlocked ? "Passed" : `${REPORTS_ROOM_MASTERY_THRESHOLD}%`,
+            label: "Learning target",
+            value: result.reportsRoomUnlocked ? "Met" : `${REPORTS_ROOM_MASTERY_THRESHOLD}%`,
           },
         ]}
         actions={
@@ -188,26 +189,27 @@ export function AccountSorter({ challenge }: AccountSorterProps) {
                 Try again
               </Button>
             )}
-            {result.reportsRoomUnlocked && (
-              <Link href="/lessons/lesson-profit-loss">
-                <Button size="lg">Start Week 3</Button>
-              </Link>
-            )}
+            <Link
+              href="/board"
+              onClick={() => markChallengeMissionComplete("challenge-sort-accounts")}
+            >
+              <Button size="lg">Return to board & collect star</Button>
+            </Link>
             <Link href="/dashboard">
-              <Button variant="outline">Dashboard</Button>
+              <Button variant="ghost">View dashboard</Button>
             </Link>
           </>
         }
       >
         {result.reportsRoomUnlocked ? (
-          <Alert variant="success" title="Reports Room unlocked">
-            You scored {result.masteryPercent}% — above the {REPORTS_ROOM_MASTERY_THRESHOLD}%
-            mastery gate. Week 3 is now open on your dashboard.
+          <Alert variant="success" title="Week 2 learning target reached">
+            You scored {result.masteryPercent}%, which meets the {REPORTS_ROOM_MASTERY_THRESHOLD}%
+            target. Return to the board to collect your key star.
           </Alert>
         ) : (
           <Alert variant="warning" title="Keep practicing">
-            Score at least {REPORTS_ROOM_MASTERY_THRESHOLD}% on your first try to unlock the
-            Reports Room. You scored {result.masteryPercent}%.
+            You scored {result.masteryPercent}%. Aim for {REPORTS_ROOM_MASTERY_THRESHOLD}% or
+            higher to reach the learning target, or review the lesson before trying again.
           </Alert>
         )}
       </ChallengeCompletePanel>

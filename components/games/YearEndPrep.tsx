@@ -63,9 +63,11 @@ export function YearEndPrep() {
         <div className="text-5xl">🎯</div>
         <h3 className="text-2xl font-bold text-ledger-900">Year-End Prep</h3>
         <p className="max-w-md text-ledger-600">
-          Practice the calculations and knowledge you need for year-end:
-          <strong> depreciation</strong>, <strong>home office claims</strong>,
-          <strong> mileage rates</strong>, and <strong>accountant handoff</strong>.
+          Week 4 common journals before tax handoff:
+          <strong> Journal #1 depreciation</strong> ($14,500),
+          <strong> Journal #2 home office</strong> ($3,585),
+          <strong> Journal #3 mileage</strong> ($15,600), then
+          <strong> accountant handover</strong>.
         </p>
         <div className="flex flex-wrap justify-center gap-2">
           {Object.values(CATEGORY_LABELS).map((c) => (

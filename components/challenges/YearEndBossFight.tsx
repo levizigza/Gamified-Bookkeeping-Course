@@ -31,6 +31,7 @@ import { classifyMistake } from "@/lib/game/remediation";
 import { RemediationFeedback } from "@/components/game/RemediationFeedback";
 import { ChallengeCompletePanel } from "@/components/game/ChallengeCompletePanel";
 import { Alert } from "@/components/ui/Alert";
+import { markChallengeMissionComplete } from "@/lib/data/boardMissions";
 
 type YearEndBossFightProps = {
   challenge: YearEndBossChallenge;
@@ -165,18 +166,23 @@ export function YearEndBossFight({ challenge }: YearEndBossFightProps) {
         ]}
         actions={
           <>
-            <Button onClick={handleRestart}>Fight again</Button>
+            <Link
+              href="/board"
+              onClick={() => markChallengeMissionComplete("challenge-year-end-boss")}
+            >
+              <Button size="lg">Return to board & collect star</Button>
+            </Link>
             {passed && (
               <Link href="/certificate">
-                <Button size="lg">View certificate</Button>
+                <Button variant="outline">View certificate</Button>
               </Link>
             )}
-            <Link href="/calculators">
+            <Link href="/tools#calculators">
               <Button variant="outline">Review calculators</Button>
             </Link>
-            <Link href="/lessons/lesson-handoff">
-              <Button variant="ghost">Handoff lesson</Button>
-            </Link>
+            <Button onClick={handleRestart} variant="ghost">
+              Fight again
+            </Button>
           </>
         }
       >

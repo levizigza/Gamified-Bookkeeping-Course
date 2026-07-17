@@ -9,6 +9,8 @@ import {
   COURSE_WEEKS,
   type CourseWeek,
 } from "@/lib/course/courseMenu";
+import { loadBoardState } from "@/lib/data/boardProgress";
+import { getUnlockedWeek } from "@/lib/game/boardEngine";
 import { playSound } from "@/lib/audio/soundEngine";
 import { Button } from "@/components/ui/Button";
 
@@ -16,23 +18,33 @@ type CourseMenuScreenProps = {
   onEnterCourse: () => void;
 };
 
+function weeksWithLiveLocks(unlockedWeek: 1 | 2 | 3 | 4): CourseWeek[] {
+  return COURSE_WEEKS.map((week) => ({
+    ...week,
+    locked: week.week > unlockedWeek,
+  }));
+}
+
 export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
   const router = useRouter();
   const [previewWeek, setPreviewWeek] = useState<CourseWeek | null>(null);
   const [showBrief, setShowBrief] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [weeks, setWeeks] = useState(() => weeksWithLiveLocks(1));
   const titleId = useId();
   const previewTitleId = useId();
 
   useEffect(() => {
+    const unlockedWeek = getUnlockedWeek(loadBoardState().completedMissionIds);
+    setWeeks(weeksWithLiveLocks(unlockedWeek));
     const timer = window.setTimeout(() => setVisible(true), 40);
     return () => window.clearTimeout(timer);
   }, []);
 
-  const enterWeekOne = () => {
+  const enterBoard = () => {
     playSound("chaChing", 0.8);
     onEnterCourse();
-    router.push("/lessons/lesson-why-bookkeeping/");
+    router.push("/board");
   };
 
   const openPreview = (week: CourseWeek) => {
@@ -81,8 +93,8 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
           >
             {showBrief ? "Hide course brief" : "Prerequisites & objectives"}
           </Button>
-          <Button size="sm" onClick={enterWeekOne} className="shadow-glow-gold">
-            Start Week 1
+          <Button size="sm" onClick={enterBoard} className="shadow-glow-gold">
+            Open game board
           </Button>
         </div>
 
@@ -105,7 +117,7 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-gold-400">
                 Objectives
               </h2>
-              <p className="mt-2 text-xs text-ledger-400">The business owner shall be:</p>
+              <p className="mt-2 text-xs text-ledger-400">By the end, you will be able to:</p>
               <ol className="mt-3 space-y-2 text-sm text-ledger-100">
                 {COURSE_OBJECTIVES.map((item, index) => (
                   <li key={item} className="flex gap-3">
@@ -119,7 +131,7 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
         )}
 
         <ul className="grid flex-1 gap-4 sm:grid-cols-2">
-          {COURSE_WEEKS.map((week, index) => (
+          {weeks.map((week, index) => (
             <li
               key={week.id}
               className="animate-fade-in-up"
@@ -159,15 +171,20 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
                   {week.topics.slice(0, 3).map((topic) => (
                     <li key={topic.id} className="flex gap-2">
                       <span className="font-mono text-xs text-gold-400/80">{topic.number}.</span>
-                      <span className="line-clamp-1">{topic.title}</span>
+                      <span>{topic.title}</span>
                     </li>
                   ))}
+                  {week.topics.length > 3 && (
+                    <li className="pl-5 text-xs text-ledger-400">
+                      Plus {week.topics.length - 3} more topic{week.topics.length - 3 === 1 ? "" : "s"} in the full preview.
+                    </li>
+                  )}
                 </ol>
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {!week.locked ? (
-                    <Button size="sm" onClick={enterWeekOne}>
-                      Enter week
+                    <Button size="sm" onClick={enterBoard}>
+                      Enter the board
                     </Button>
                   ) : (
                     <Button
@@ -176,7 +193,9 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
                       disabled
                       className="cursor-not-allowed border-white/15 bg-white/5 text-ledger-400"
                     >
-                      {week.week === 2 ? "Locked — finish Week 1" : "Locked"}
+                      {week.week === 2
+                        ? "Locked — collect Week 1 key stars"
+                        : `Locked — collect Week ${week.week - 1} key stars`}
                     </Button>
                   )}
                   <Button
@@ -201,7 +220,7 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
         </ul>
 
         <p className="mt-8 text-center text-xs text-ledger-500">
-          Unlock later weeks by completing earlier modules at 80% mastery.
+          Open later weeks by collecting all three key stars in the previous week.
         </p>
       </div>
 
@@ -228,7 +247,7 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
 
             {previewWeek.locked && (
               <p className="mt-4 rounded-xl border border-gold-400/30 bg-gold-400/10 px-3 py-2 text-xs text-gold-400">
-                This week is locked in play mode. Preview only — complete earlier weeks to unlock.
+                This week is locked in play mode. Preview only — collect all three key stars in earlier weeks on the board to unlock.
               </p>
             )}
 
@@ -257,7 +276,7 @@ export function CourseMenuScreen({ onEnterCourse }: CourseMenuScreenProps) {
                 <Button
                   onClick={() => {
                     setPreviewWeek(null);
-                    enterWeekOne();
+                    enterBoard();
                   }}
                 >
                   Start this week

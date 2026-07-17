@@ -16,7 +16,7 @@ export default function GlobalError({
       <Alert variant="error" title="Something went wrong" className="text-left">
         <p>
           We could not load this page. Your progress is saved locally — try again
-          or return to the dashboard.
+          or return to the game board.
         </p>
         {process.env.NODE_ENV === "development" && error.message && (
           <p className="mt-2 font-mono text-xs opacity-80">{error.message}</p>
@@ -24,8 +24,8 @@ export default function GlobalError({
       </Alert>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button onClick={reset}>Try again</Button>
-        <Link href="/dashboard">
-          <Button variant="outline">Dashboard</Button>
+        <Link href="/board">
+          <Button variant="outline">Game board</Button>
         </Link>
       </div>
     </div>

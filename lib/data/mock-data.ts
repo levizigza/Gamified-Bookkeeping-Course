@@ -33,7 +33,7 @@ const worlds: World[] = [
     name: "Reports Room",
     subtitle: "Week 3 — Read the story",
     description:
-      "Turn your trial balance into Profit & Loss and Balance Sheet reports.",
+      "Transactions → Trial Balance → Profit & Loss + Balance Sheet → Insights → Decisions.",
     week: 3,
     icon: "📊",
     unlocked: false,
@@ -45,7 +45,7 @@ const worlds: World[] = [
     name: "Year-End Boss Fight",
     subtitle: "Week 4 — Close the year",
     description:
-      "Post depreciation, home office, and mileage adjustments — then hand off to your accountant.",
+      "Post Journals #1–#3 (depreciation, home office, mileage) — then hand off to your accountant.",
     week: 4,
     icon: "⚔️",
     unlocked: false,
@@ -63,8 +63,9 @@ const lessons: Lesson[] = [
   {
     id: "lesson-why-bookkeeping",
     worldId: "daily-ledger",
-    title: "Why Bookkeeping Matters",
-    description: "Understand how consistent records help you run, grow, and protect your business.",
+    title: "What Is Bookkeeping — and Why It Matters",
+    description:
+      "Learn how recording everyday income and spending helps you understand the business and prepare information for taxes, banks, and partners.",
     durationMinutes: 8,
     challengeIds: ["challenge-why-books"],
     completed: true,
@@ -72,8 +73,8 @@ const lessons: Lesson[] = [
   {
     id: "lesson-double-entry",
     worldId: "daily-ledger",
-    title: "Double-Entry Basics",
-    description: "Every transaction has two sides — learn debits and credits.",
+    title: "Double-Entry Bookkeeping and Sales Taxes",
+    description: "Two opposing sides to every transaction — plus GST on everyday buys like taxis and Home Depot materials.",
     durationMinutes: 12,
     challengeIds: ["challenge-classify-transaction", "challenge-double-entry-duel"],
     completed: false,
@@ -82,7 +83,8 @@ const lessons: Lesson[] = [
     id: "lesson-june-sprint",
     worldId: "daily-ledger",
     title: "June Ledger Sprint",
-    description: "Record all Bright Path Consulting transactions from June 1–30, 2024.",
+    description:
+      "Record Bright Path’s June transactions: meals, vehicle/travel, office, supplies, equipment, and GST splits — about five minutes a day.",
     durationMinutes: 25,
     challengeIds: ["challenge-june-meals", "challenge-june-equipment"],
     completed: false,
@@ -90,17 +92,19 @@ const lessons: Lesson[] = [
   {
     id: "lesson-account-types",
     worldId: "account-sorter",
-    title: "Account Categories",
-    description: "Learn assets, liabilities, equity, income, and expenses.",
-    durationMinutes: 10,
+    title: "Assets, Liabilities, Income and Expenses",
+    description:
+      "Learn what the business owns, what it owes, what it earns, and what it spends—including whether money moves now or later.",
+    durationMinutes: 12,
     challengeIds: ["challenge-sort-accounts"],
     completed: false,
   },
   {
     id: "lesson-trial-balance",
     worldId: "account-sorter",
-    title: "Trial Balance Puzzle",
-    description: "Make debits equal credits across every account.",
+    title: "Trial Balance",
+    description:
+      "Daily transactions compile into a month-end summary of assets, liabilities, income, and expenses.",
     durationMinutes: 15,
     challengeIds: ["challenge-trial-balance"],
     completed: false,
@@ -108,8 +112,9 @@ const lessons: Lesson[] = [
   {
     id: "lesson-profit-loss",
     worldId: "reports-room",
-    title: "Profit & Loss",
-    description: "See how revenue and expenses tell your performance story.",
+    title: "Financial Statements — Profit & Loss",
+    description:
+      "Follow transactions into a Profit & Loss report, then read revenue, direct costs, gross profit, expenses, and net income.",
     durationMinutes: 12,
     challengeIds: ["challenge-build-pl", "challenge-insight-detective"],
     completed: false,
@@ -117,27 +122,30 @@ const lessons: Lesson[] = [
   {
     id: "lesson-balance-sheet",
     worldId: "reports-room",
-    title: "Balance Sheet",
-    description: "Snapshot what you own and owe at a point in time.",
-    durationMinutes: 12,
+    title: "Balance Sheet, Insights & Decisions",
+    description:
+      "Learn why assets must equal liabilities plus equity, then use the report to make practical owner decisions.",
+    durationMinutes: 14,
     challengeIds: ["challenge-build-bs", "challenge-insight-detective"],
     completed: false,
   },
   {
     id: "lesson-depreciation",
     worldId: "year-end-boss",
-    title: "Year-End Adjustments",
-    description: "Depreciation, home office, and mileage before tax season.",
-    durationMinutes: 20,
+    title: "Year-End Common Journals",
+    description:
+      "Journals #1–#3: depreciation $14,500, home office $3,585, mileage $15,600.",
+    durationMinutes: 18,
     challengeIds: ["challenge-depreciation", "challenge-year-end-boss"],
     completed: false,
   },
   {
     id: "lesson-handoff",
     worldId: "year-end-boss",
-    title: "Accountant Handoff",
-    description: "Prepare a clean package for your tax professional.",
-    durationMinutes: 10,
+    title: "Handover to Accountants for Tax Preparation",
+    description:
+      "Prepare an adjusted Trial Balance, financial statements, and supporting worksheets for the accountant.",
+    durationMinutes: 12,
     challengeIds: ["challenge-year-end-boss"],
     completed: false,
   },
@@ -206,7 +214,7 @@ const challenges: Challenge[] = [
     worldId: "account-sorter",
     title: "Account Sorter",
     description:
-      "Sort accounts into the correct category. Score 80% to unlock the Reports Room.",
+      "Sort assets, liabilities, income, expenses, and equity. Aim for 80% or higher to reach the Week 2 learning target.",
     xpReward: 230,
     completed: false,
   },
@@ -214,8 +222,9 @@ const challenges: Challenge[] = [
     id: "challenge-trial-balance",
     lessonId: "lesson-trial-balance",
     worldId: "account-sorter",
-    title: "Balance the Trial Balance",
-    description: "Find and fix the imbalance in your trial balance.",
+    title: "Trial Balance Checkpoint",
+    description:
+      "See how the month compiles into a Trial Balance — then practice keeping debits equal to credits.",
     xpReward: 150,
     completed: false,
   },

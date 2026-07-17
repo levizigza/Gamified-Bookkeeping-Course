@@ -240,7 +240,7 @@ export function scheduleIntroSounds(onPhase: (phase: number) => void): () => voi
   });
 
   return () => {
+    // Clear pending foley only — OpeningAnimation owns ambient music lifecycle.
     timers.forEach(clearTimeout);
-    stopAmbientMusic();
   };
 }

@@ -1,4 +1,4 @@
-import { CourseCertificate } from "@/components/game/CourseCertificate";
+import { CertificateGate } from "@/components/game/CertificateGate";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { getMockGamificationProgress } from "@/lib/game/mockProgress";
 import { sampleBusiness } from "@/lib/data/sampleBusiness";
@@ -24,7 +24,7 @@ export default function CertificatePage() {
         description="A record of your progress through the Bright Path Consulting simulation."
         className="mb-8"
       />
-      <CourseCertificate
+      <CertificateGate
         businessName={progress.businessName}
         ownerName={sampleBusiness.ownerName}
         completionDate={completionDate}

@@ -19,7 +19,6 @@ const WORLD_VISUALS: Record<string, { showTypewriter?: boolean; accentClass: str
 };
 
 export function WorldCard({ world, lockMessage }: WorldCardProps) {
-  const firstLessonId = world.lessonIds[0];
   const visual = WORLD_VISUALS[world.id] ?? {
     accentClass: "from-ledger-100/60 to-transparent",
     variant: "ledger" as const,
@@ -80,19 +79,19 @@ export function WorldCard({ world, lockMessage }: WorldCardProps) {
         />
       )}
 
-      {world.unlocked && firstLessonId ? (
-        <Link href={`/lessons/${firstLessonId}`} className="block">
+      {world.unlocked ? (
+        <Link href="/board" className="block">
           <Button
             variant={world.progressPercent > 0 ? "primary" : "outline"}
             size="sm"
             className="w-full"
           >
-            {world.progressPercent > 0 ? "Continue" : "Start"}
+            {world.progressPercent > 0 ? "Continue on the board" : "Open the board"}
           </Button>
         </Link>
       ) : (
         <p className="rounded-lg bg-ledger-50 px-3 py-2 text-center text-xs text-ledger-500">
-          {lockMessage ?? "Complete the previous world to unlock"}
+          {lockMessage ?? "Collect the key stars on the board to unlock this week"}
         </p>
       )}
     </Card>

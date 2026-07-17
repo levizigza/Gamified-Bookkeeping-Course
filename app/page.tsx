@@ -85,12 +85,12 @@ export default function HomePage() {
             <span className="text-ledger-600">Your business, understood.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ledger-700 sm:text-xl">
-            Ledger Quest is a business simulator disguised as a fintech learning app.
-            No accounting background required — just curiosity and a willingness to practice.
+            Ledger Quest teaches bookkeeping through a guided board game based on one small business.
+            You do not need accounting experience. The course explains each step before asking you to practise it.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/dashboard">
-              <Button size="lg">Start your journey</Button>
+            <Link href="/board">
+              <Button size="lg">🎲 Play Ledger Quest</Button>
             </Link>
             <Link href="/lessons/lesson-why-bookkeeping">
               <Button variant="outline" size="lg">
@@ -152,7 +152,7 @@ export default function HomePage() {
               Four worlds. One complete skill.
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-ledger-600">
-              Progress through a 4-week curriculum with mastery gates — unlock the next module at 80%.
+              Collect three key stars in each week to open the next part of the board. Challenge scores show where extra practice may help.
             </p>
           </div>
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -197,8 +197,8 @@ export default function HomePage() {
           <p className="mt-3 text-ledger-600">
             Earn XP, build streaks, collect badges, and finish with a certificate of completion.
           </p>
-          <Link href="/dashboard" className="mt-8 inline-block">
-            <Button size="lg">Go to dashboard</Button>
+          <Link href="/board" className="mt-8 inline-block">
+            <Button size="lg">Open the game board</Button>
           </Link>
         </div>
       </section>

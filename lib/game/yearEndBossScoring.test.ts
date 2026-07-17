@@ -14,17 +14,29 @@ import { createEmptyBuilderLine } from "@/lib/game/journalScoring";
 describe("yearEndBossScoring", () => {
   const challenge = getYearEndBossChallenge();
 
-  it("grades a perfect depreciation submission", () => {
+  it("grades a perfect Journal #1 depreciation submission", () => {
     const scenario = challenge.scenarios[0];
     const result = gradeYearEndBossSubmission(
-      900_000,
+      1_450_000,
       [
-        { id: "1", accountId: "depreciation-expense", side: "debit", amountCents: 900_000 },
+        { id: "1", accountId: "depreciation-expense", side: "debit", amountCents: 1_450_000 },
         {
           id: "2",
           accountId: "accumulated-amortization-vehicle",
           side: "credit",
           amountCents: 900_000,
+        },
+        {
+          id: "3",
+          accountId: "accumulated-amortization-furniture",
+          side: "credit",
+          amountCents: 300_000,
+        },
+        {
+          id: "4",
+          accountId: "accumulated-amortization-equipment",
+          side: "credit",
+          amountCents: 250_000,
         },
       ],
       scenario,
@@ -74,12 +86,24 @@ describe("yearEndBossScoring", () => {
     const result = gradeYearEndBossSubmission(
       800_000,
       [
-        { id: "1", accountId: "depreciation-expense", side: "debit", amountCents: 900_000 },
+        { id: "1", accountId: "depreciation-expense", side: "debit", amountCents: 1_450_000 },
         {
           id: "2",
           accountId: "accumulated-amortization-vehicle",
           side: "credit",
           amountCents: 900_000,
+        },
+        {
+          id: "3",
+          accountId: "accumulated-amortization-furniture",
+          side: "credit",
+          amountCents: 300_000,
+        },
+        {
+          id: "4",
+          accountId: "accumulated-amortization-equipment",
+          side: "credit",
+          amountCents: 250_000,
         },
       ],
       scenario,
@@ -131,7 +155,7 @@ describe("yearEndBossScoring", () => {
 
   it("requires at least two lines for submission grading", () => {
     const scenario = challenge.scenarios[0];
-    const result = gradeYearEndBossSubmission(900_000, [createEmptyBuilderLine()], scenario);
+    const result = gradeYearEndBossSubmission(1_450_000, [createEmptyBuilderLine()], scenario);
     expect(result.balanced).toBe(false);
   });
 });

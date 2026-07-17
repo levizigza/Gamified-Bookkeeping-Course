@@ -74,7 +74,7 @@ describe("validateJournalEntry", () => {
   it("rejects a line with both debit and credit", () => {
     const result = validateJournalEntry(
       makeEntry([
-        { accountId: "supplies", debitCents: 500, creditCents: 500 } as JournalLine,
+        { accountId: "supplies", debitCents: 500, creditCents: 500 } as unknown as JournalLine,
         { accountId: "bank-cash", creditCents: 500 },
       ]),
     );
@@ -103,7 +103,7 @@ describe("validateJournalEntry", () => {
   it("rejects empty lines", () => {
     const result = validateJournalEntry(
       makeEntry([
-        { accountId: "supplies", debitCents: 0, creditCents: 0 } as JournalLine,
+        { accountId: "supplies", debitCents: 0, creditCents: 0 } as unknown as JournalLine,
         { accountId: "bank-cash", creditCents: 100 },
       ]),
     );

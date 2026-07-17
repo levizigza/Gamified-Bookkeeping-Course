@@ -84,8 +84,8 @@ export default async function ChallengePage({ params }: ChallengePageProps) {
   return (
     <div className={`mx-auto px-4 py-8 sm:px-6 sm:py-12 ${wideLayout ? "max-w-5xl" : "max-w-3xl"}`}>
       <PageHeader
-        backHref={lesson ? `/lessons/${lesson.id}` : "/dashboard"}
-        backLabel={lesson ? `Back to ${lesson.title}` : "Back to dashboard"}
+        backHref={lesson ? `/lessons/${lesson.id}` : "/board"}
+        backLabel={lesson ? `Back to ${lesson.title}` : "Back to game board"}
         title={challenge.title}
         description={challenge.description}
         badge={
@@ -118,6 +118,9 @@ export default async function ChallengePage({ params }: ChallengePageProps) {
 
       {hasInteractiveChallenge && (
         <div className="mt-8 flex flex-wrap gap-3">
+          <Link href="/board">
+            <Button>← Back to board</Button>
+          </Link>
           {lesson && (
             <Link href={`/lessons/${lesson.id}`}>
               <Button variant="outline">Back to lesson</Button>

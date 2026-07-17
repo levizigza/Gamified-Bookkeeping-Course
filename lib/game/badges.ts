@@ -38,12 +38,12 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
   },
   {
     id: "trial-balance-hero",
-    name: "Trial Balance Hero",
-    description: "Balanced your first trial balance.",
+    name: "Account Sorter Pro",
+    description: "Sorted accounts into the right categories at 80% or higher.",
     icon: "⚖️",
-    learningOutcome: "Proved debits equal credits across accounts.",
+    learningOutcome: "Classified assets, liabilities, income, expenses, and equity correctly.",
     moduleId: "account-sorter",
-    criteria: "80%+ on Account Sorter.",
+    criteria: "Score 80%+ on the Account Sorter challenge.",
     ruleKey: "module_mastery_account_sorter",
   },
   {

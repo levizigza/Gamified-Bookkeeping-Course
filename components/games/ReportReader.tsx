@@ -50,8 +50,9 @@ export function ReportReader() {
         <div className="text-5xl">🔍</div>
         <h3 className="text-2xl font-bold text-ledger-900">Report Reader</h3>
         <p className="max-w-md text-ledger-600">
-          Read real financial statement data and answer business questions.
-          Can you spot profitability trends, cash issues, and make smart decisions?
+          Read P&L shape (gross profit, net income) and Balance Sheet signals.
+          Turn <strong>Insights</strong> into owner <strong>Decisions</strong> —
+          just like the Week 3 curriculum diagram.
         </p>
         <button onClick={startGame} className="rounded-xl bg-ledger-600 px-8 py-3 text-lg font-bold text-white shadow-md transition-transform hover:scale-105 active:scale-95">
           Start Game

@@ -24,8 +24,8 @@ export default async function ToolsPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 sm:py-12">
       <nav aria-label="Breadcrumb" className="mb-6">
-        <Link href="/dashboard" className="text-sm text-ledger-600 hover:text-ledger-900">
-          ← Back to dashboard
+        <Link href="/board" className="text-sm text-ledger-600 hover:text-ledger-900">
+          ← Back to game board
         </Link>
       </nav>
 
@@ -68,11 +68,14 @@ export default async function ToolsPage() {
       </section>
 
       <div className="mt-10 flex flex-wrap gap-3">
+        <Link href="/board">
+          <Button>Return to board</Button>
+        </Link>
         <Link href="/reports">
           <Button variant="outline">View June reports</Button>
         </Link>
         <Link href="/dashboard">
-          <Button variant="ghost">Dashboard</Button>
+          <Button variant="ghost">View dashboard</Button>
         </Link>
       </div>
     </div>

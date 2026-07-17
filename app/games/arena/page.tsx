@@ -91,7 +91,7 @@ export default function ArenaPage() {
       <DollarBillFrame className="mb-8 text-center">
         <p className="text-sm font-semibold text-ledger-700">Learning pair rule</p>
         <p className="mt-1 text-sm text-ledger-600">
-          Complete the <strong>kinesthetic game</strong> first, then pass the{" "}
+          Complete the <strong>practice game</strong> first, then pass the{" "}
           <strong>Arena quiz</strong> to lock in the skill.
         </p>
       </DollarBillFrame>

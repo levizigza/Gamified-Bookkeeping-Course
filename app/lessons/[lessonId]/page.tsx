@@ -50,13 +50,13 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
   const title = content?.title ?? lesson?.title ?? "Lesson";
   const description =
-    content?.storyIntro?.slice(0, 160) ?? lesson?.description ?? undefined;
+    lesson?.description ?? content?.storyIntro ?? undefined;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
       <PageHeader
-        backHref="/dashboard"
-        backLabel="Back to dashboard"
+        backHref="/board"
+        backLabel="Back to game board"
         eyebrow={
           world ? `${world.icon} ${world.name}${content ? ` · Week ${content.week}` : ""}` : undefined
         }
@@ -71,6 +71,29 @@ export default async function LessonPage({ params }: LessonPageProps) {
         }
         className="mb-8"
       />
+
+      {content && (
+        <aside
+          aria-label="How this lesson fits the board"
+          className="mb-8 rounded-2xl border border-ledger-200 bg-white p-4 shadow-sm"
+        >
+          <p className="font-semibold text-ledger-900">How this stop works</p>
+          <ol className="mt-3 grid gap-2 text-sm text-ledger-700 sm:grid-cols-3">
+            <li className="rounded-xl bg-ledger-50 px-3 py-2">
+              <strong className="text-ledger-900">1. Read</strong>
+              <span className="mt-1 block">Learn the idea in plain language.</span>
+            </li>
+            <li className="rounded-xl bg-ledger-50 px-3 py-2">
+              <strong className="text-ledger-900">2. Practise</strong>
+              <span className="mt-1 block">Use the challenge at the bottom.</span>
+            </li>
+            <li className="rounded-xl bg-gold-400/10 px-3 py-2">
+              <strong className="text-ledger-900">3. Return</strong>
+              <span className="mt-1 block">Go back to the board and collect your star.</span>
+            </li>
+          </ol>
+        </aside>
+      )}
 
       {content ? (
         <LessonContentView
@@ -114,8 +137,8 @@ export default async function LessonPage({ params }: LessonPageProps) {
       )}
 
       <div className="mt-10">
-        <Link href="/dashboard">
-          <Button variant="outline">Back to dashboard</Button>
+        <Link href="/board">
+          <Button variant="outline">Return to game board</Button>
         </Link>
       </div>
     </div>

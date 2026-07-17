@@ -20,6 +20,7 @@ import { classifyMistake } from "@/lib/game/remediation";
 import { RemediationFeedback } from "@/components/game/RemediationFeedback";
 import { ChallengeCompletePanel } from "@/components/game/ChallengeCompletePanel";
 import { Alert } from "@/components/ui/Alert";
+import { markChallengeMissionComplete } from "@/lib/data/boardMissions";
 
 type DoubleEntryDuelProps = {
   challenge: DoubleEntryDuelChallenge;
@@ -146,12 +147,15 @@ export function DoubleEntryDuel({ challenge }: DoubleEntryDuelProps) {
                 Retry duel
               </Button>
             ) : (
-              <Link href={`/lessons/${challenge.nextLessonId}`}>
-                <Button size="lg">Next lesson</Button>
+              <Link
+                href="/board"
+                onClick={() => markChallengeMissionComplete("challenge-double-entry-duel")}
+              >
+                <Button size="lg">Return to board & collect star</Button>
               </Link>
             )}
-            <Link href="/dashboard">
-              <Button variant="outline">Dashboard</Button>
+            <Link href={`/lessons/${challenge.nextLessonId}`}>
+              <Button variant="outline">Optional practice lesson</Button>
             </Link>
           </>
         }
@@ -171,8 +175,8 @@ export function DoubleEntryDuel({ challenge }: DoubleEntryDuelProps) {
         )}
         <Alert variant="info" className="mt-4">
           {recommendRetry
-            ? "Practice the duel again to sharpen balancing and GST splits before the June Ledger Sprint."
-            : "Excellent duel! Head to the June Ledger Sprint to record full-month transactions."}
+            ? "Practice the duel again to sharpen balancing and GST splits."
+            : "Nice work. Return to the board to collect your Week 1 key star and keep racing."}
         </Alert>
       </ChallengeCompletePanel>
     );

@@ -12,9 +12,9 @@ type NavLink = {
 };
 
 const navLinks: NavLink[] = [
+  { href: "/board", symbolId: "board" },
   { href: "/dashboard", symbolId: "dashboard" },
   { href: "/games", symbolId: "games" },
-  { href: "/games/arcade", symbolId: "arcade" },
   { href: "/reports", symbolId: "reports" },
   { href: "/tools", symbolId: "tools" },
   { href: "/profile", symbolId: "profile" },
@@ -37,6 +37,7 @@ function NavLinkItem({
     <Link
       href={href}
       onClick={handleClick}
+      aria-label={config.label}
       className={`group flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm font-medium transition-all duration-200 sm:px-3 sm:py-2 ${
         active
           ? "bg-ledger-600 text-white shadow-sm"

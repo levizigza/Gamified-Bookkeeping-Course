@@ -1,6 +1,13 @@
 import type { ReactNode } from "react";
 
-export type NavSymbolId = "dashboard" | "games" | "arcade" | "reports" | "tools" | "profile";
+export type NavSymbolId =
+  | "board"
+  | "dashboard"
+  | "games"
+  | "arcade"
+  | "reports"
+  | "tools"
+  | "profile";
 
 type SymbolConfig = {
   label: string;
@@ -9,6 +16,11 @@ type SymbolConfig = {
 };
 
 export const NAV_SYMBOLS: Record<NavSymbolId, SymbolConfig> = {
+  board: {
+    label: "Board",
+    outline: "rounded-xl border-2 border-gold-500/60 bg-gradient-to-br from-gold-400/30 to-ledger-100",
+    icon: <span className="text-lg leading-none">🗺️</span>,
+  },
   dashboard: {
     label: "Dashboard",
     outline: "rounded-2xl border-2 border-ledger-400/60 bg-gradient-to-br from-ledger-100 to-ledger-50",

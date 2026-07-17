@@ -58,11 +58,11 @@ export function EquationHero() {
         <div className="text-5xl">🧮</div>
         <h3 className="text-2xl font-bold text-ledger-900">Equation Hero</h3>
         <p className="max-w-md text-ledger-600">
-          The accounting equation: <strong>Assets = Liabilities + Equity</strong>.
-          Two values are given — solve for the missing one!
+          The Balance Sheet must balance: <strong>Assets = Liabilities + Equity</strong>.
+          Two values are given — solve for the missing one (including sample statement totals).
         </p>
         <div className="rounded-xl border border-ledger-200 bg-white px-6 py-3">
-          <p className="text-lg font-bold text-ledger-900">A = L + E</p>
+          <p className="text-lg font-bold text-ledger-900">Assets = Liabilities + Equity</p>
         </div>
         <button onClick={startGame} className="rounded-xl bg-ledger-600 px-8 py-3 text-lg font-bold text-white shadow-md transition-transform hover:scale-105 active:scale-95">
           Start Game

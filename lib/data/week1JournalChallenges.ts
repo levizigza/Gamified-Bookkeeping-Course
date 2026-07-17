@@ -189,8 +189,8 @@ export const doubleEntryDuelChallenge: DoubleEntryDuelChallenge = {
       date: "2024-06-15",
       title: "Buy a business laptop",
       narrative:
-        "You purchase a $2,400 MacBook Pro for consulting work, paid from your business bank account. " +
-        "This is equipment you will use for more than one year.",
+        "You purchase a $2,400 MacBook Pro for consulting work, paid from your business bank account " +
+        "(before GST for this practice entry). This is equipment you will use for more than one year.",
       displayAmountCents: 240_000,
       salesTaxApplies: false,
       salesTaxOnSale: false,
@@ -203,6 +203,50 @@ export const doubleEntryDuelChallenge: DoubleEntryDuelChallenge = {
         "Cash left your bank (credit Bank/Cash). You will expense it gradually through amortization later.",
       consistencyTip:
         "Capitalize durable purchases above your threshold to Equipment — expense small items to Supplies instead.",
+      maxXp: 50,
+    },
+    {
+      id: "duel-09-taxi",
+      date: "2024-06-11",
+      title: "Taxi to a client meeting (with GST)",
+      narrative:
+        "You hail a taxi to a client site. The receipt is $42.00 plus $2.10 GST ($44.10 total), paid from " +
+        "your business debit card. Cash leaves the bank; you gained a ride.",
+      displayAmountCents: 4_410,
+      salesTaxApplies: true,
+      salesTaxOnSale: false,
+      expectedLines: lines(
+        { accountId: "travel-expense", debitCents: 4_200 },
+        { accountId: "gst-hst-payable", debitCents: 210 },
+        { accountId: "bank-cash", creditCents: 4_410 },
+      ),
+      ownerExplanation:
+        "Cash went down (credit Bank/Cash $44.10). You gained a transportation service (debit Travel Expense $42) " +
+        "and paid GST that can reduce what you owe CRA later (debit GST/HST Payable $2.10 as an input tax credit).",
+      consistencyTip:
+        "Everyday taxable rides follow the same split: expense + GST + cash/credit — every time.",
+      maxXp: 50,
+    },
+    {
+      id: "duel-10-home-depot",
+      date: "2024-06-14",
+      title: "Home Depot materials (with GST)",
+      narrative:
+        "You buy $200 of workshop materials at Home Depot plus $10 GST ($210 total) on the business debit card. " +
+        "These are job materials — keep them in Supplies, not Office Expenses.",
+      displayAmountCents: 21_000,
+      salesTaxApplies: true,
+      salesTaxOnSale: false,
+      expectedLines: lines(
+        { accountId: "supplies", debitCents: 20_000 },
+        { accountId: "gst-hst-payable", debitCents: 1_000 },
+        { accountId: "bank-cash", creditCents: 21_000 },
+      ),
+      ownerExplanation:
+        "You spent cash and gained materials. Debit Supplies $200, debit GST input tax credit $10, credit Bank/Cash $210. " +
+        "Consistency: job materials stay in Supplies every time.",
+      consistencyTip:
+        "Like the plumber rule — materials for client work never migrate into general Office Expenses later.",
       maxXp: 50,
     },
     {

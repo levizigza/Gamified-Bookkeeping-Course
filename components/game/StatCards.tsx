@@ -59,6 +59,9 @@ export function XpCard({ xp, level, xpInLevel, xpToNext }: XpCardProps) {
         <span className="font-medium text-ledger-700">{xp} XP</span> · {current} / {max} to level{" "}
         {level + 1}
       </p>
+      <p className="mt-1 text-xs text-ledger-500">
+        XP means experience points earned from learning activities.
+      </p>
     </Card>
   );
 }
@@ -104,7 +107,7 @@ export function MasteryCard({ percent }: MasteryCardProps) {
       <p className="mb-2 text-2xl font-bold tabular-nums text-ledger-900">{percent}%</p>
       <ProgressBar value={percent} showPercent={false} size="sm" />
       <p className="mt-2 text-xs text-ledger-500">
-        {percent >= 80 ? "Module unlock threshold reached" : "80% unlocks the next world"}
+        {percent >= 80 ? "You reached the 80% learning target." : "Aim for the 80% learning target."}
       </p>
     </Card>
   );

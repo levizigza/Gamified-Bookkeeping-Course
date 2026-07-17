@@ -23,6 +23,7 @@ import { classifyMistake } from "@/lib/game/remediation";
 import { RemediationFeedback } from "@/components/game/RemediationFeedback";
 import { ChallengeCompletePanel } from "@/components/game/ChallengeCompletePanel";
 import { Alert } from "@/components/ui/Alert";
+import { markChallengeMissionComplete } from "@/lib/data/boardMissions";
 
 type InsightDetectiveProps = {
   challenge: InsightDetectiveChallenge;
@@ -198,10 +199,18 @@ export function InsightDetective({ challenge }: InsightDetectiveProps) {
         ]}
         actions={
           <>
-            <Button onClick={handleRetryChallenge}>Try again</Button>
+            <Link
+              href="/board"
+              onClick={() => markChallengeMissionComplete("challenge-insight-detective")}
+            >
+              <Button size="lg">Return to board & collect star</Button>
+            </Link>
             <Link href="/reports">
               <Button variant="outline">Open Reports Room</Button>
             </Link>
+            <Button onClick={handleRetryChallenge} variant="ghost">
+              Try again
+            </Button>
           </>
         }
       >

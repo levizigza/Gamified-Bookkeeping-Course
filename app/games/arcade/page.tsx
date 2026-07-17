@@ -4,18 +4,18 @@ import { SideArcade } from "@/components/games/arcade/SideArcade";
 
 export const metadata = {
   title: "Side Arcade — Ledger Quest",
-  description: "Client showcase of kinesthetic bookkeeping games.",
+  description: "Hands-on bookkeeping practice games in one arcade cabinet.",
 };
 
 export default function SideArcadePage() {
   return (
     <div className="mx-auto max-w-7xl px-3 py-6 sm:px-6 sm:py-8">
       <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap gap-3 text-sm">
-        <Link href="/games" className="text-ledger-600 hover:text-ledger-900">
-          ← Games hub
+        <Link href="/board" className="text-ledger-600 hover:text-ledger-900">
+          ← Back to game board
         </Link>
-        <Link href="/dashboard" className="text-ledger-500 hover:text-ledger-800">
-          Dashboard
+        <Link href="/games" className="text-ledger-500 hover:text-ledger-800">
+          All games
         </Link>
       </nav>
 

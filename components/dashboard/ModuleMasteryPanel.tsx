@@ -1,5 +1,4 @@
 import type { ModuleProgress } from "@/lib/game/types";
-import { MODULE_UNLOCK_THRESHOLD } from "@/lib/game/constants";
 import { Card } from "@/components/ui/Card";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 
@@ -12,7 +11,7 @@ export function ModuleMasteryPanel({ modules }: ModuleMasteryPanelProps) {
     <ul className="grid gap-3 sm:grid-cols-2">
       {modules.map((mod) => (
         <li key={mod.moduleId}>
-          <Card padding="md" className={mod.unlocked ? "" : "opacity-80"}>
+          <Card padding="md">
             <div className="flex items-start justify-between gap-2">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wide text-ledger-500">
@@ -22,12 +21,12 @@ export function ModuleMasteryPanel({ modules }: ModuleMasteryPanelProps) {
               </div>
               <span
                 className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                  mod.unlocked
+                  mod.masteryPercent > 0
                     ? "bg-ledger-100 text-ledger-700"
-                    : "bg-amber-100 text-amber-800"
+                    : "bg-ledger-100 text-ledger-500"
                 }`}
               >
-                {mod.unlocked ? "Unlocked" : "Locked"}
+                {mod.masteryPercent > 0 ? "In progress" : "Not started"}
               </span>
             </div>
 
@@ -43,15 +42,11 @@ export function ModuleMasteryPanel({ modules }: ModuleMasteryPanelProps) {
               {mod.challengesCompleted}/{mod.challengesTotal} key challenges · +{mod.xpEarned} XP
             </p>
 
-            {!mod.unlocked && mod.lockMessage && (
-              <p className="mt-2 text-xs text-amber-800">{mod.lockMessage}</p>
-            )}
-
-            {mod.unlocked && mod.masteryPercent < MODULE_UNLOCK_THRESHOLD && mod.week < 4 && (
-              <p className="mt-2 text-xs text-ledger-600">
-                Reach {MODULE_UNLOCK_THRESHOLD}% to unlock the next week.
-              </p>
-            )}
+            <p className="mt-2 text-xs text-ledger-600">
+              {mod.masteryPercent >= 80
+                ? "Learning target reached."
+                : "Aim for 80% or higher on the key challenges."}
+            </p>
           </Card>
         </li>
       ))}

@@ -77,9 +77,10 @@ export function StatementSorter() {
         <div className="text-5xl">📋</div>
         <h3 className="text-2xl font-bold text-ledger-900">Statement Sorter</h3>
         <p className="max-w-md text-ledger-600">
-          See an account name and decide: does it belong on the
-          <strong> Profit &amp; Loss</strong> (period report) or the
-          <strong> Balance Sheet</strong> (point-in-time snapshot)?
+          Week 3 flow: accounts from the Trial Balance land on the
+          <strong> Profit &amp; Loss</strong> (period performance) or the
+          <strong> Balance Sheet</strong> (position today). {ROUND_SIZE} accounts,{" "}
+          {TIME_LIMIT} seconds!
         </p>
         <button onClick={startGame} className="rounded-xl bg-ledger-600 px-8 py-3 text-lg font-bold text-white shadow-md transition-transform hover:scale-105 active:scale-95">
           Start Game

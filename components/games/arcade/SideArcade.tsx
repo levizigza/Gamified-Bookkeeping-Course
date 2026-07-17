@@ -16,15 +16,24 @@ import { playSound } from "@/lib/audio/soundEngine";
 import { Button } from "@/components/ui/Button";
 import { ConceptVisual } from "@/components/visuals/ConceptVisual";
 
-const GAME_COMPONENTS: Record<string, ComponentType> = {
+type GameProps = { week?: number };
+
+const CORE_DRILL_IDS = new Set([
+  "debit-credit",
+  "category-blitz",
+  "balance-entry",
+  "cash-flow-snap",
+]);
+
+const GAME_COMPONENTS: Record<string, ComponentType<GameProps>> = {
   "debit-credit": DebitOrCredit,
   "category-blitz": CategoryBlitz,
   "balance-entry": BalanceTheEntry,
   "cash-flow-snap": CashFlowSnap,
-  "statement-sorter": StatementSorter,
-  "equation-hero": EquationHero,
-  "report-reader": ReportReader,
-  "year-end-prep": YearEndPrep,
+  "statement-sorter": StatementSorter as ComponentType<GameProps>,
+  "equation-hero": EquationHero as ComponentType<GameProps>,
+  "report-reader": ReportReader as ComponentType<GameProps>,
+  "year-end-prep": YearEndPrep as ComponentType<GameProps>,
 };
 
 const STYLE_CHIP: Record<ArcadeGame["style"], string> = {
@@ -42,6 +51,9 @@ export function SideArcade() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const initialId = searchParams.get("game") ?? ARCADE_GAMES.find((g) => g.featured)?.id ?? ARCADE_GAMES[0].id;
+  const weekParam = searchParams.get("week");
+  const weekFromUrl = weekParam ? Number.parseInt(weekParam, 10) : NaN;
+  const activeWeek = Number.isFinite(weekFromUrl) ? weekFromUrl : 1;
 
   const [activeId, setActiveId] = useState(initialId);
   const [presentation, setPresentation] = useState(false);
@@ -216,6 +228,28 @@ export function SideArcade() {
                   <dt className="sr-only">Curriculum</dt>
                   <dd>{active.weeks}</dd>
                 </div>
+                {CORE_DRILL_IDS.has(active.id) && (
+                  <div className="flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-1 py-0.5">
+                    <span className="px-2 text-ledger-400">Drill week</span>
+                    {[1, 2].map((w) => (
+                      <button
+                        key={w}
+                        type="button"
+                        onClick={() => {
+                          playSound("navClick");
+                          router.replace(`/games/arcade?game=${active.id}&week=${w}`, { scroll: false });
+                        }}
+                        className={`rounded-full px-2.5 py-1 font-semibold transition ${
+                          activeWeek === w
+                            ? "bg-gold-400/20 text-gold-400"
+                            : "text-ledger-300 hover:bg-white/10"
+                        }`}
+                      >
+                        {w}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </dl>
             </div>
             <div className="hidden h-28 w-36 opacity-80 sm:block" aria-hidden="true">
@@ -230,7 +264,10 @@ export function SideArcade() {
             </div>
             <div className="h-full overflow-y-auto p-4 pt-12 sm:p-6 sm:pt-14">
               {GameComponent ? (
-                <GameComponent key={active.id} />
+                <GameComponent
+                  key={`${active.id}-${activeWeek}`}
+                  week={CORE_DRILL_IDS.has(active.id) ? activeWeek : undefined}
+                />
               ) : (
                 <p className="text-ledger-600">Game unavailable.</p>
               )}

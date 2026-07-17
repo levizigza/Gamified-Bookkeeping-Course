@@ -50,7 +50,7 @@ export function achievementForModuleUnlock(
   return createAchievementEvent(
     "module_unlocked",
     `${moduleTitle} unlocked`,
-    "You hit 80% mastery in the previous week.",
+    "You collected the key stars and opened the next week.",
     { moduleId: moduleId as AchievementEvent["moduleId"] },
   );
 }

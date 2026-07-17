@@ -9,7 +9,6 @@ import { getRecommendedPractice } from "@/lib/game/remediation";
 import type { RemediationWeakAreaId } from "@/lib/game/remediation";
 import { MOCK_PROGRESS_INPUT } from "@/lib/game/mockProgress";
 import { masteryLabel } from "@/lib/game/xp";
-import { DashboardWorlds } from "@/components/dashboard/DashboardWorlds";
 import { ModuleMasteryPanel } from "@/components/dashboard/ModuleMasteryPanel";
 import { WeakAreasPanel } from "@/components/dashboard/WeakAreasPanel";
 import { RecommendedPractice } from "@/components/dashboard/RecommendedPractice";
@@ -140,8 +139,8 @@ export function DashboardProgress({ initialProgress }: DashboardProgressProps) {
       <section aria-labelledby="modules-heading" className="mb-8">
         <SectionHeader
           id="modules-heading"
-          title="Module mastery"
-          description="Reach 80% to unlock the next world"
+          title="Key challenge scores"
+          description="The board uses key stars to open each week. These percentages show how well you performed on its main challenges; 80% is the learning target."
           className="mb-4"
         />
         <ModuleMasteryPanel modules={progress.modules} />
@@ -162,16 +161,6 @@ export function DashboardProgress({ initialProgress }: DashboardProgressProps) {
           <WeakAreasPanel weakAreas={progress.weakAreas} />
         </section>
       )}
-
-      <section aria-labelledby="worlds-heading" className="mb-8">
-        <SectionHeader
-          id="worlds-heading"
-          title="Your worlds"
-          description="Four-week curriculum for Bright Path Consulting"
-          className="mb-4"
-        />
-        <DashboardWorlds modules={progress.modules} />
-      </section>
 
       <BadgeGrid
         badges={progress.badges}

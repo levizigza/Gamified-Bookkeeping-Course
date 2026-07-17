@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/Button";
 export function ReplayIntroButton() {
   const handleReplay = () => {
     resetIntro();
-    window.location.href = "/";
   };
 
   return (

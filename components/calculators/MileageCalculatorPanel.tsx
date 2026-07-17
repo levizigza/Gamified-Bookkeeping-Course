@@ -18,7 +18,7 @@ import { JournalEntryPreview } from "@/components/calculators/JournalEntryPrevie
 import { Button } from "@/components/ui/Button";
 
 export function MileageCalculatorPanel() {
-  const [totalKm, setTotalKm] = useState("30000");
+  const [totalKm, setTotalKm] = useState("35000");
   const [businessKm, setBusinessKm] = useState("25000");
   const [tierLimit, setTierLimit] = useState("5000");
   const [rateFirst, setRateFirst] = useState("0.68");
@@ -53,7 +53,7 @@ export function MileageCalculatorPanel() {
   }, [totalKm, businessKm, tierLimit, rateFirst, rateRemaining]);
 
   const loadSample = () => {
-    setTotalKm("30000");
+    setTotalKm("35000");
     setBusinessKm("25000");
     setTierLimit("5000");
     setRateFirst("0.68");

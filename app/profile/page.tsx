@@ -31,8 +31,8 @@ export default function ProfilePage() {
       <PageHeader
         title="Your profile"
         description={`Track your progress learning bookkeeping for ${progress.businessName}.`}
-        backHref="/dashboard"
-        backLabel="Back to dashboard"
+        backHref="/board"
+        backLabel="Back to game board"
         className="mb-8"
       />
 
@@ -48,11 +48,12 @@ export default function ProfilePage() {
       </Card>
 
       {courseComplete && (
-        <Alert variant="success" title="Course milestone reached" className="mb-8">
+        <Alert variant="success" title="Learning target reached" className="mb-8">
           <p>
-            You have reached 80% overall mastery.{" "}
-            <Link href="/certificate" className="font-semibold underline underline-offset-2">
-              View your certificate
+            You reached 80% overall mastery. Finish the board race (Week 4 trophy space) to
+            unlock your certificate.{" "}
+            <Link href="/board" className="font-semibold underline underline-offset-2">
+              Return to the board
             </Link>
           </p>
         </Alert>
@@ -70,8 +71,11 @@ export default function ProfilePage() {
       </div>
 
       <Card className="card-surface mb-8">
-        <SectionHeader title="Course progress" description="Across all four worlds" />
-        <ProgressBar value={overallProgress} label="Overall completion" />
+        <SectionHeader
+          title="Challenge score summary"
+          description="Your average score across the four course weeks"
+        />
+        <ProgressBar value={overallProgress} label="Average key-challenge score" />
         <ul className="mt-6 space-y-3">
           {worlds.map((world) => {
             const mod = progress.modules.find((m) => m.moduleId === world.id);
@@ -81,7 +85,7 @@ export default function ProfilePage() {
                   {world.icon} {world.name}
                 </span>
                 <span className="tabular-nums font-medium text-ledger-600">
-                  {mod?.unlocked ? `${mod.masteryPercent}%` : "Locked"}
+                  {mod && mod.masteryPercent > 0 ? `${mod.masteryPercent}%` : "Not started"}
                 </span>
               </li>
             );
@@ -90,7 +94,11 @@ export default function ProfilePage() {
       </Card>
 
       <div className="mb-8">
-        <SectionHeader title="Module mastery" className="mb-4" />
+        <SectionHeader
+          title="Key challenge scores"
+          description="The board uses stars for progress. These scores show how well you performed."
+          className="mb-4"
+        />
         <ModuleMasteryPanel modules={progress.modules} />
       </div>
 
@@ -107,13 +115,13 @@ export default function ProfilePage() {
 
       <div className="flex flex-wrap gap-3">
         {courseComplete && (
-          <Link href="/certificate">
-            <Button>View certificate</Button>
+          <Link href="/board">
+            <Button>Finish the board for your certificate</Button>
           </Link>
         )}
         <ReplayIntroButton />
-        <Link href="/dashboard">
-          <Button variant="outline">Back to dashboard</Button>
+        <Link href="/board">
+          <Button variant="outline">Return to game board</Button>
         </Link>
       </div>
     </div>
