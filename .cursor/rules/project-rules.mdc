@@ -1,0 +1,58 @@
+---
+description: Ledger Quest core standards — accounting accuracy, architecture, and UX
+alwaysApply: true
+---
+
+# Ledger Quest Project Rules
+
+## Product context
+
+Ledger Quest is a gamified bookkeeping education app for beginner business owners. Four worlds map to the 4-week course: Daily Ledger, Account Sorter, Reports Room, Year-End Boss Fight. See `docs/product-brief.md` and `docs/course-map.md`.
+
+## Accounting accuracy (non-negotiable)
+
+- Preserve correct double-entry bookkeeping, trial balance logic, and statement relationships.
+- When unsure, check `lib/accounting/` and `docs/course-map.md` before inventing rules.
+- Label educational simplifications explicitly in user-facing copy (e.g., generic sales tax model).
+
+## Architecture
+
+- **No accounting logic in UI components.** Components render and dispatch; logic lives in `lib/accounting/` and `lib/gamification/` as pure functions.
+- **TypeScript types for all financial models** in `types/` (`Money`, `JournalEntry`, `Account`, `TrialBalance`, etc.).
+- **Money in cents internally** (`amountCents: number`). Format for display only; never use floats for calculations.
+- **Data via repositories** (`lib/data/`). v1 uses local storage; design for future Supabase swap without changing accounting APIs.
+
+## Challenges & feedback
+
+- Every challenge must include feedback explaining **why** an answer is correct or incorrect.
+- Tie feedback to the learning objective; avoid "Wrong" without teaching.
+- June 2024 sample transactions (Bright Path Consulting) are the primary practice dataset.
+
+## UX
+
+- **Mobile-first** layouts and interactions; test at 320px width.
+- **Beginner-friendly** language; define jargon on first use.
+- Accessible: semantic HTML, sufficient contrast, keyboard-friendly controls, non-drag alternatives for sort challenges.
+
+## Stack
+
+Next.js (App Router), TypeScript (strict), Tailwind CSS. Keep components small; colocate challenge UI under `components/challenges/`.
+
+## Examples
+
+```typescript
+// ❌ BAD — logic in component
+const total = lines.reduce((s, l) => s + parseFloat(l.amount), 0);
+
+// ✅ GOOD — pure utility + typed cents
+const result = sumJournalLinesCents(lines);
+```
+
+```tsx
+// ❌ BAD — validation in JSX
+{debit > credit && <p>Wrong</p>}
+
+// ✅ GOOD — challenge runner uses lib + feedback model
+const result = validateJournalEntry(entry);
+return <FeedbackPanel result={result} />;
+```

@@ -1,0 +1,371 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ledger-50: #f0f7f4;
+  --color-ledger-100: #dceee6;
+  --color-ledger-200: #bbddce;
+  --color-ledger-300: #8fc5ad;
+  --color-ledger-400: #5fa888;
+  --color-ledger-500: #3d8c6d;
+  --color-ledger-600: #2d7057;
+  --color-ledger-700: #255a47;
+  --color-ledger-800: #20483a;
+  --color-ledger-900: #1b3c31;
+  --color-ledger-950: #0e221b;
+
+  --color-gold-400: #f5c842;
+  --color-gold-500: #e8b020;
+  --color-gold-600: #c99212;
+
+  --color-surface-elevated: #ffffff;
+  --color-surface-muted: #f7faf8;
+
+  --font-sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --shadow-card: 0 1px 3px rgb(14 34 27 / 0.06), 0 4px 12px rgb(14 34 27 / 0.04);
+  --shadow-card-hover: 0 4px 16px rgb(14 34 27 / 0.08), 0 8px 24px rgb(14 34 27 / 0.06);
+  --shadow-glow-gold: 0 0 24px rgb(232 176 32 / 0.25);
+  --shadow-glow-ledger: 0 0 32px rgb(61 140 109 / 0.15);
+
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ledger-50 text-ledger-950 antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgb(61 140 109 / 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgb(232 176 32 / 0.04), transparent);
+    background-attachment: fixed;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ledger-500;
+  }
+
+  ::selection {
+    @apply bg-ledger-200 text-ledger-950;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-ledger-200/80 bg-white;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-surface-interactive {
+    @apply rounded-2xl border border-ledger-200/80 bg-white transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-surface-interactive:hover {
+    box-shadow: var(--shadow-card-hover);
+    @apply -translate-y-1 border-ledger-300/80;
+  }
+
+  .gradient-hero {
+    background: linear-gradient(
+      165deg,
+      var(--color-ledger-100) 0%,
+      var(--color-ledger-50) 45%,
+      #ffffff 100%
+    );
+  }
+
+  .gradient-fintech {
+    background: linear-gradient(
+      135deg,
+      var(--color-ledger-700) 0%,
+      var(--color-ledger-800) 50%,
+      var(--color-ledger-950) 100%
+    );
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--color-ledger-100) 0%,
+      var(--color-ledger-50) 50%,
+      var(--color-ledger-100) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out both;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out both;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .animate-xp-pop {
+    animation: xp-pop 2.5s ease-out forwards;
+  }
+
+  .animate-success-ring {
+    animation: success-ring 0.6s ease-out both;
+  }
+
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+
+  .animate-typewriter-tap {
+    animation: typewriter-tap 2s ease-in-out infinite;
+  }
+
+  .animate-key-press {
+    animation: key-press 2s ease-in-out infinite;
+  }
+
+  .animate-receipt-print {
+    animation: receipt-print 3s ease-in-out infinite;
+  }
+
+  .animate-bell-ring {
+    animation: bell-ring 2s ease-in-out infinite;
+  }
+
+  .game-style-neon {
+    box-shadow: 0 0 20px rgb(168 85 247 / 0.15);
+  }
+
+  .game-style-8bit {
+    image-rendering: pixelated;
+    box-shadow: 4px 4px 0 rgb(14 34 27 / 0.1);
+  }
+
+  .game-style-paper {
+    background-image: linear-gradient(135deg, #fffef8 0%, #f7f0e0 100%);
+  }
+
+  .game-style-3d {
+    box-shadow: var(--shadow-glow-ledger);
+  }
+
+  .arcade-shell {
+    box-shadow: 0 20px 60px rgb(14 34 27 / 0.35);
+  }
+
+  .arcade-cabinet {
+    background-image:
+      radial-gradient(circle at 20% 0%, rgb(61 140 109 / 0.08), transparent 40%),
+      linear-gradient(180deg, #ffffff 0%, #f7faf8 100%);
+  }
+
+  .accounting-grid {
+    background-image:
+      linear-gradient(rgb(61 140 109 / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(61 140 109 / 0.12) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(ellipse at center, black 10%, transparent 72%);
+  }
+
+  .visual-ledger-chip {
+    @apply flex w-28 flex-col rounded-xl border border-ledger-300/50 bg-white/50 px-3 py-2 text-ledger-700 shadow-sm backdrop-blur-sm;
+    animation: visual-float 7s ease-in-out infinite;
+  }
+
+  .visual-ledger-chip span {
+    @apply text-[9px] font-bold tracking-[0.2em] text-ledger-400;
+  }
+
+  .visual-ledger-chip strong {
+    @apply text-sm;
+  }
+
+  .visual-coin {
+    @apply absolute flex h-8 w-8 items-center justify-center rounded-full border border-gold-400/30 bg-gold-400/10 text-xs font-bold text-gold-600/40;
+    animation: coin-drift 9s ease-in-out infinite;
+  }
+
+  .visual-float {
+    transform-origin: center;
+    animation: visual-float 5.5s ease-in-out infinite;
+  }
+
+  .visual-orbit {
+    transform-origin: 120px 90px;
+    animation: visual-orbit 7s ease-in-out infinite;
+  }
+
+  .visual-sort-card {
+    animation: visual-card-sort 3.4s ease-in-out infinite;
+  }
+
+  .visual-chart-line {
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: chart-draw 3.5s ease-in-out infinite;
+  }
+
+  .visual-delay-0 { animation-delay: 0s; }
+  .visual-delay-1 { animation-delay: 0.35s; }
+  .visual-delay-2 { animation-delay: 0.7s; }
+  .visual-delay-3 { animation-delay: 1.05s; }
+
+  .visual-banner::after {
+    content: "";
+    position: absolute;
+    inset: auto -20% -70% 30%;
+    height: 180px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, transparent, rgb(61 140 109 / 0.14), transparent);
+    filter: blur(18px);
+    animation: banner-glow 6s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes xp-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1.05);
+  }
+  20% {
+    transform: translateY(-4px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+}
+
+@keyframes success-ring {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes typewriter-tap {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+}
+
+@keyframes key-press {
+  0%, 100% { transform: translateY(0); fill: #4a5568; }
+  10% { transform: translateY(2px); fill: #2d3748; }
+}
+
+@keyframes receipt-print {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes bell-ring {
+  0%, 100% { transform: rotate(0); }
+  10% { transform: rotate(8deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(4deg); }
+  40% { transform: rotate(0); }
+}
+
+@keyframes visual-float {
+  0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+  50% { transform: translateY(-8px) rotateX(2deg) rotateY(-3deg); }
+}
+
+@keyframes visual-orbit {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(5px, -8px) rotate(12deg); }
+}
+
+@keyframes visual-card-sort {
+  0%, 100% { transform: translateY(0); opacity: .92; }
+  45% { transform: translateY(-7px); opacity: 1; }
+}
+
+@keyframes chart-draw {
+  0%, 15% { stroke-dashoffset: 180; }
+  60%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes coin-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateY(0deg); }
+  50% { transform: translate3d(8px, -14px, 0) rotateY(180deg); }
+}
+
+@keyframes banner-glow {
+  0%, 100% { transform: translateX(-10%); opacity: .45; }
+  50% { transform: translateX(18%); opacity: .8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
