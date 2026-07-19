@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { OpeningAnimation } from "@/components/intro/OpeningAnimation";
 import { CourseMenuScreen } from "@/components/course/CourseMenuScreen";
-import { hasEnteredCourse, markCourseEntered } from "@/lib/data/introGate";
+import { clearCourseEntered, markCourseEntered } from "@/lib/data/introGate";
 
 type IntroGateProps = {
   children: React.ReactNode;
@@ -12,14 +12,14 @@ type IntroGateProps = {
 type GatePhase = "intro" | "menu" | "app";
 
 export function IntroGate({ children }: IntroGateProps) {
-  // Default to the app so a stalled client never traps learners on a blank splash.
-  const [phase, setPhase] = useState<GatePhase>("app");
-  const [checked, setChecked] = useState(false);
-  const blocking = checked && phase !== "app";
+  // Always open with the intro on a fresh page load — never skip permanently.
+  const [phase, setPhase] = useState<GatePhase | null>(null);
+  const blocking = phase !== "app";
 
   useEffect(() => {
-    setPhase(hasEnteredCourse() ? "app" : "intro");
-    setChecked(true);
+    // Drop any legacy "already entered" flags from older builds.
+    clearCourseEntered();
+    setPhase("intro");
   }, []);
 
   const enterCourse = () => {
@@ -27,12 +27,20 @@ export function IntroGate({ children }: IntroGateProps) {
     setPhase("app");
   };
 
+  if (phase === null) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-ledger-950 text-sm text-ledger-300">
+        Opening Ledger Quest…
+      </div>
+    );
+  }
+
   return (
     <>
-      {checked && phase === "intro" && (
+      {phase === "intro" && (
         <OpeningAnimation onComplete={() => setPhase("menu")} />
       )}
-      {checked && phase === "menu" && <CourseMenuScreen onEnterCourse={enterCourse} />}
+      {phase === "menu" && <CourseMenuScreen onEnterCourse={enterCourse} />}
       <div
         className={blocking ? "overflow-hidden" : undefined}
         aria-hidden={blocking || undefined}
